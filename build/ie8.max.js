@@ -127,6 +127,9 @@ THE SOFTWARE.
 
   function enrich(e, currentTarget) {
     e.currentTarget = currentTarget;
+    if (!e.which && e.button !== undefined) {
+      e.which = ( e.button & 1 ? 1 : ( e.button & 2 ? 3 : ( e.button & 4 ? 2 : 0 ) ) );
+    }
     e.eventPhase = (
       // AT_TARGET : BUBBLING_PHASE
       e.target === e.currentTarget ? 2 : 3
